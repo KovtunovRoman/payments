@@ -25,24 +25,25 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public Notification read(String uuid) {
-        UUID notificationUUID = UUID.fromString(uuid);
+    public Notification read(String id) {
+        UUID notificationUUID = UUID.fromString(id);
         NotificationId notificationId = NotificationId.of(notificationUUID);
         return this.repository.getNotificationById(notificationId).orElseThrow(NoSuchElementException::new);
     }
 
     @Override
-    public UUID update(String uuid, Notification notification) {
-        UUID notificationUUID = UUID.fromString(uuid);
+    public UUID update(String id, Notification notification) {
+        UUID notificationUUID = UUID.fromString(id);
         NotificationId notificationId = NotificationId.of(notificationUUID);
         notification.setId(notificationId);
+        notification.setCreateDate(LocalDate.now());
         this.repository.updateNotification(notification);
         return notificationUUID;
     }
 
     @Override
-    public UUID delete(String uuid) {
-        UUID notificationUUID = UUID.fromString(uuid);
+    public UUID delete(String id) {
+        UUID notificationUUID = UUID.fromString(id);
         NotificationId notificationId = NotificationId.of(notificationUUID);
         this.repository.deleteNotificationById(notificationId);
         return notificationUUID;

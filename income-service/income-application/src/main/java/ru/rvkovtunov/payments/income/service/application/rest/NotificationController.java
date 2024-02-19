@@ -18,7 +18,7 @@ public class NotificationController {
 
     private final NotificationService notificationService;
 
-    @PutMapping("/create")
+    @PostMapping("/create")
     public ResponseEntity<Object> create(@RequestBody Notification notification){
         log.info("Начался процесс создания записи в таблице");
         final UUID notificationUUID = this.notificationService.create(notification);
@@ -27,24 +27,26 @@ public class NotificationController {
     }
 
     @GetMapping(path = "/read", params = {"uuid"})
-    public ResponseEntity<Object> read(@RequestParam String uuid){
-        final Notification notification = this.notificationService.read(uuid);
+    public ResponseEntity<Object> read(@RequestParam String id){
+        log.info("Начался процесс получения записи из базы");
+        final Notification notification = this.notificationService.read(id);
+        log.info("Запись успешно получена, уникальный идентификатор: {}", id);
         return ResponseEntity.ok(notification);
     }
 
-    @PostMapping(path = "/update", params = {"uuid"})
-    public ResponseEntity<Object> update(@RequestParam String uuid, @RequestBody Notification notification){
+    @PutMapping(path = "/update", params = {"uuid"})
+    public ResponseEntity<Object> update(@RequestParam String id, @RequestBody Notification notification){
         log.info("Начался процесс изменения записи в таблице");
-        this.notificationService.update(uuid, notification);
-        log.info("Изменение успешно завершено, идентификатор обьекта: {}", uuid);
+        this.notificationService.update(id, notification);
+        log.info("Изменение успешно завершено, идентификатор обьекта: {}", id);
         return ResponseEntity.ok(HttpEntity.EMPTY);
     }
 
     @DeleteMapping(path = "/delete", params = {"uuid"})
-    public ResponseEntity<Object> delete(@RequestParam String uuid){
+    public ResponseEntity<Object> delete(@RequestParam String id){
         log.info("Начался процесс удаления запись из таблицы");
-        this.notificationService.delete(uuid);
-        log.info("Запись успешно удалена, идентификатор удаленной записи: {}", uuid);
-        return null;
+        this.notificationService.delete(id);
+        log.info("Запись успешно удалена, идентификатор удаленной записи: {}", id);
+        return ResponseEntity.ok(HttpEntity.EMPTY);
     }
 }

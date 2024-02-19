@@ -8,10 +8,10 @@ public interface NotificationService {
 
     UUID create(Notification notification);
 
-    Notification read(String uuid);
+    Notification read(String id);
 
-    UUID update(String uuid, Notification notification);
+    UUID update(String id, Notification notification);
 
-    UUID delete(String uuid);
+    UUID delete(String id);
 
 }
