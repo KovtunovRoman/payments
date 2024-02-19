@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface NotificationRepository {
 
-    UUID createNotification();
+    UUID createNotification(Notification notification);
 
     public Optional<Notification> getNotificationById(NotificationId notificationId);
 

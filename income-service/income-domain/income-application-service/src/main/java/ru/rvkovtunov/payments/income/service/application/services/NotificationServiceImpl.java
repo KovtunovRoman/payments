@@ -7,6 +7,7 @@ import ru.rvkovtunov.payments.income.service.application.services.repository.Not
 import ru.rvkovtunov.payments.income.service.domain.core.entity.Notification;
 import ru.rvkovtunov.payments.income.service.domain.core.objectsId.NotificationId;
 
+import java.time.LocalDate;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
@@ -17,8 +18,10 @@ public class NotificationServiceImpl implements NotificationService {
     private final NotificationRepository repository;
 
     @Override
-    public UUID create() {
-        return this.repository.createNotification();
+    public UUID create(Notification notification) {
+        notification.setId(NotificationId.newInstance());
+        notification.setCreateDate(LocalDate.now());
+        return this.repository.createNotification(notification);
     }
 
     @Override

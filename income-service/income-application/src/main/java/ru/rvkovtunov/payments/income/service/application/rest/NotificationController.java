@@ -19,9 +19,9 @@ public class NotificationController {
     private final NotificationService notificationService;
 
     @PutMapping("/create")
-    public ResponseEntity<Object> create(){
+    public ResponseEntity<Object> create(@RequestBody Notification notification){
         log.info("Начался процесс создания записи в таблице");
-        final UUID notificationUUID = this.notificationService.create();
+        final UUID notificationUUID = this.notificationService.create(notification);
         log.info("Запись создана, уникальный идентификатор обьекта: {}", notificationUUID);
         return ResponseEntity.ok(HttpEntity.EMPTY);
     }

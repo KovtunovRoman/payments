@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public interface NotificationService {
 
-    UUID create();
+    UUID create(Notification notification);
 
     Notification read(String uuid);
 
