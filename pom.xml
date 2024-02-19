@@ -6,7 +6,8 @@
 	<modules>
 		<module>income-service</module>
 		<module>income-service/income-domain/income-domain-core</module>
-	</modules>
+        <module>common</module>
+    </modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -84,7 +85,6 @@
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 					<compilerVersion>${java.version}</compilerVersion>
-					<compilerArgs>--enable-preview</compilerArgs>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.mapstruct</groupId>
