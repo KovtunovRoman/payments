@@ -14,5 +14,5 @@ public class Notification extends AggregateRoot<NotificationId> {
 
     private String notificationNumber;
     private NotificationStatus status;
-    private LocalDate createDate;
+    private LocalDate modifyDate;
 }

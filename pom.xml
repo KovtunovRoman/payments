@@ -5,7 +5,6 @@
 
 	<modules>
 		<module>income-service</module>
-		<module>income-service/income-domain/income-domain-core</module>
         <module>common</module>
     </modules>
 

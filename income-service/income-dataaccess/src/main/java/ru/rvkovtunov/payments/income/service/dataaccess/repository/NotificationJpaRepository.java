@@ -12,11 +12,4 @@ import java.util.UUID;
 @Repository
 public interface NotificationJpaRepository extends JpaRepository<NotificationEntity, UUID> {
 
-    @Query(value = """
-            SELECT p
-            FROM NotificationEntity p
-            WHERE p.id = :id
-            """)
-    Optional<NotificationEntity> findById(@Param("id") UUID id);
-
 }

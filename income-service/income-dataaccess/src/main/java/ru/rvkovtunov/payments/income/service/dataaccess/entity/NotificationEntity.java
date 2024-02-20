@@ -2,7 +2,7 @@ package ru.rvkovtunov.payments.income.service.dataaccess.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
+import ru.rvkovtunov.payments.income.service.domain.core.shared.converter.NotificationStatusAttributeConverter;
 import ru.rvkovtunov.payments.income.service.domain.core.shared.enums.NotificationStatus;
 
 import java.time.LocalDate;
@@ -22,9 +22,9 @@ public class NotificationEntity {
     @GeneratedValue
     private UUID id;
     private String notificationNumber;
+    @Convert(converter = NotificationStatusAttributeConverter.class)
     private NotificationStatus status;
-    @CreatedDate
-    private LocalDate createDate;
+    private LocalDate modifyDate;
 
     @Override
     public boolean equals(final Object o) {
